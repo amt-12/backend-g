@@ -5,10 +5,11 @@ const routes = require("./routes");
 
 const express = require("express");
 const backend = express();
-
+ 
+// routing 3
 backend.use(routes);
 
-// CORS (Second step)
+// CORS (Second step) 2
 backend.use(cors({
     origin: "*",
     methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
@@ -16,7 +17,7 @@ backend.use(cors({
 );
 
 
-
+// mongoose connect 1
 mongoose.connect("mongodb+srv://amrit0207232:Cdjj2NB7bRb16Y78@beheights.facpumu.mongodb.net/")
   .then(() =>
     console.log(`${chalk.green("✓")} ${chalk.blue("MongoDB Connected!")}`)
