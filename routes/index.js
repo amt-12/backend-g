@@ -3,7 +3,6 @@ const router = require("express").Router();
 const createError = require("http-errors");
 
 const apiRoutes = require("./api/index.js");
-const { app } = require("../config/keys");
 
 router.use("/api", apiRoutes);
 
