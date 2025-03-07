@@ -16,7 +16,7 @@ const register = async (req, res, next) => {
     if (userVerification) {
       return res.status(200).json({
         success: false,
-        message: "User login sucessfully",
+        message: "User Exist already",
       });
     }
     if (userPassword) {
