@@ -1,33 +1,22 @@
 const User = require("../../models/User.model");
 const { registrationValidation } = require("../../services/validation_schema");
+const jwt = require("jsonwebtoken");
 const register = async (req, res, next) => {
   try {
     const registerValues = await registrationValidation.validateAsync(req.body);
     console.log(registerValues);
     const { username, password } = registerValues;
 
-    const userVerification = await User.findOne({
+    const userInfo={
       username,
-    });
-    const userPassword = await User.findOne({
-      password,
-    });
-    console.log(userVerification);
-    if (userVerification) {
-      return res.status(200).json({
-        success: false,
-        message: "User Exist already",
-      });
+      password
     }
-    if (userPassword) {
-      return res.status(409).json({
-        success: false,
-        message: "User Password exists",
-      });
-    }
+const secretKey = process.env.ACCESS_TOKEN_SECRET
+    const jwtToken = jwt.sign(userInfo,secretKey);
     const newUser = new User({
       username,
       password,
+      jwtToken
     });
     await newUser.save();
 

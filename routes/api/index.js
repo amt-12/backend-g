@@ -1,10 +1,11 @@
 const router = require("express").Router();
 const authRoutes = require("./Auth.route");
-const categoryRoutes = require("./Category.route");
+const uploadFile = require('../../controllers/upload/upload');
 
 
 router.use("/auth", authRoutes);
-router.use("/category", categoryRoutes);
+router.post('/upload', uploadFile);
+
 
 
 router.get("/ping", (req, res) => {

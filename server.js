@@ -5,8 +5,11 @@ const routes = require("./routes");
 const cors = require("cors");
 const express = require("express");
 const backend = express();
+const multer = require("multer");
+const path = require('path');
 
 backend.use(express.json());
+backend.use(express.urlencoded({ extended: true }));
 
 
 // CORS (Second step) 2
@@ -17,10 +20,9 @@ backend.use(cors({
 );
 
 
-
-
-// routing 3
+// routing 3 this is the routes which will be  come from frontend
 backend.use(routes);
+backend.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
 // mongoose connect 1
